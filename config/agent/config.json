@@ -15,6 +15,26 @@
         "limitPerRelationshipType" : 10,
         "useCanonical" : true
       }
+    },
+    "antonym" : {
+      "url" : "{serviceAgent}/word.json/{word}/relatedWords?relationshipTypes=antonym",
+      "headers" : {
+        "limitPerRelationshipType" : 10,
+        "useCanonical" : true
+      }
+    },
+    "topExample" : {
+      "url" : "{serviceAgent}/word.json/{word}/topExample",
+      "headers" : {
+        "limitPerRelationshipType" : 10,
+        "useCanonical" : false
+      }
+    },
+    "wordOfTheDay" : {
+      "url" : "{serviceAgent}/words.json/wordOfTheDay?",
+      "headers" : {
+
+      }
     }
   }
 }

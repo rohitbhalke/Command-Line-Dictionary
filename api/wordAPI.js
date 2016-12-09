@@ -6,21 +6,7 @@
     var properties = require('../config/properties.json');
 
     api['get'] = function (endPoint, word){
-        /*var url = 'http://api.wordnik.com:80/v4/word.json/arrive/definitions?limit=200&includeRelated=true&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
-
-        var options = {
-            uri: 'http://api.wordnik.com:80/v4/word.json/<def>/definitions',
-            headers: {
-                'api_key': 'a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5',
-                'useCanonical' : false,
-                'includeTags' : false,
-                'includeRelated' : true,
-                'limit' : 1
-            },
-            json: true
-        };*/
         var options = buildOptions(endPoint, word);
-
        return rp(options).then(function (response){
            return Promise.resolve(response);
         }).catch(function(err){
@@ -28,7 +14,6 @@
         })
 
     };
-
 
 
     var buildOptions = function(endPoint, word) {
@@ -52,7 +37,7 @@
             if(param.startsWith('{') && param.endsWith('}')){
                 let actualParam = param.substr(1,param.length-2);
                 if(properties[actualParam])
-                    urlParams[index] = properties[actualParam]
+                    urlParams[index] = properties[actualParam];
                 if(actualParam === 'word')
                     urlParams[index] = word
             }
