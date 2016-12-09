@@ -1,0 +1,20 @@
+{
+  "endPoints" : {
+    "definition" : {
+        "url" : "{serviceAgent}/word.json/{word}/definitions",
+        "headers" : {
+          "limit" : 1,
+          "includeRelated"  : true,
+          "useCanonical" : true,
+          "includeTags" : false
+        }
+    },
+    "synonym" : {
+      "url" : "{serviceAgent}/word.json/{word}/relatedWords?relationshipTypes=synonym",
+      "headers" : {
+        "limitPerRelationshipType" : 10,
+        "useCanonical" : true
+      }
+    }
+  }
+}

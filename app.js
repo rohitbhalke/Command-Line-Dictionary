@@ -8,7 +8,7 @@ var static = {
 stdin.addListener("data", function(d) {
     var input = d.toString().trim().split(" ");
     if(input[0] === static.firstArgument){
-        handler[input[1]].call().then(function(result){
+        handler[input[1]].call(undefined, input[2]).then(function(result){
             print(result);
         })
     }
