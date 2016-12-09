@@ -30,6 +30,7 @@
     };
 
 
+
     var buildOptions = function(endPoint, word) {
         var ep = config['endPoints'][endPoint];
         var url = ep.url, headers, options;

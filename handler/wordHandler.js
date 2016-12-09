@@ -1,6 +1,7 @@
 (function () {
     var api = require('../api/wordAPI.js');
     var Promise = require("bluebird");
+
     var handler = {};
 
     handler['def'] = function (word) {
@@ -25,6 +26,7 @@
             function synonyms() {
                 return response[0].words.join(",");
             }
+
             return Promise.resolve(synonyms());
         });
     };
