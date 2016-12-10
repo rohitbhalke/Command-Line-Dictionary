@@ -70,5 +70,71 @@
       })
     };
 
+    handler['play'] = function() {
+        var promise = api.get('randomWord'), word;
+        return promise.then(function(response){
+            word = response.word;
+
+            var defPromise = api.get('definition',word),
+                synonymPromise = api.get("synonym",word),
+                antonymPromise = api.get("antonym",word),
+                arrOfPromises = [defPromise, synonymPromise, antonymPromise];
+
+            return Promise.all(arrOfPromises);
+        }).then(function(result){
+            var hintObject = getHintObject(result, word);
+            return Promise.resolve(hintObject);
+        });
+    };
+
+
+    function getHintObject(result, word) {
+        var obj = {};
+
+        function getDefinition(){
+            let defArr = [];
+            result[0].forEach(function(defObject){
+                defArr.push(defObject.text);
+            })
+            return defArr;
+        }
+
+        function getSynonym() {
+            return result[1][0] ?result[1][0].words : [];
+        }
+
+        function getAnonym(){
+            return result[2][0] ? result[2][0].words : [];
+        }
+
+        function randomlyJumbledWord(word){
+            var newWord = "", word=word.split("");
+
+            function getRandomNum(max, min) {
+                return Math.floor(Math.random() * max);
+            }
+            for(var i=0;i<word.length;i++){
+                let index = getRandomNum(word.length,0)
+                newWord += word[index];
+                word.splice(index, 1);
+                i--;
+            }
+            return newWord;
+        };
+
+        obj.definition = getDefinition();
+        obj.synonyms = getSynonym();
+        obj.antonyms = getAnonym();
+        obj.word = word;
+        obj.jumbledWord = [randomlyJumbledWord(word)];
+        obj.eligibleHints = ["definition"];
+        if(obj.antonyms.length)
+            obj.eligibleHints.push("antonyms");
+        if(obj.synonyms.length)
+            obj.eligibleHints.push("synonyms");
+        obj.currentPointerOfHint = Math.floor(Math.random() * obj.eligibleHints.length);
+        return obj;
+    }
+
     module.exports = handler;
 })();

@@ -35,6 +35,13 @@
       "headers" : {
 
       }
+    },
+    "randomWord" : {
+      "url" : "{serviceAgent}/words.json/randomWord",
+      "headers" : {
+        "minLength" : 5,
+        "hasDictionaryDef" : true
+      }
     }
   }
 }
