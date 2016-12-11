@@ -27,7 +27,7 @@
         }
         else {
             console.log("Wrong");
-            console.log("Choose any option : \n1: try again \n2: hint \n3:quit ")
+            console.log("Choose any option : \n1: try again \n2: hint \n3: quit ")
         }
     };
 
@@ -59,8 +59,8 @@
     gameObj.quit = function () {
         console.log("The answer is: " + self.hints.word);
         console.log("Definition: "+self.hints.definition.join("\n"));
-        console.log("Synonyms: "+self.hints.synonyms.join("\n"));
-        console.log("Antonyms: "+self.hints.antonyms.join("\n"));
+        console.log("Synonyms: "+self.hints.synonyms.join(","));
+        console.log("Antonyms: "+self.hints.antonyms.join(","));
         app = require('../app.js');
         app.resetGameMode();
 

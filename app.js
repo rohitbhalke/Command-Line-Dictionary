@@ -23,19 +23,19 @@
             else if (input[1] && handler[input[1]] && input[2]) {
                 handler[input[1]](input[2]).then(function (result) {
                     print(result);
-                })
+                }).catch(function(err){})
             }
             else if (input[1] && input.length === 2) {
                 // dictonary get all info of word
                 handler['dict'](input[1]).then(function (result) {
                     print(result);
-                })
+                }).catch(function(err){})
             }
             else if (input[1] === undefined) {
                 // Word of the day
                 handler['wordOfTheDay']().then(function (result) {
                     print(result);
-                });
+                }).catch(function(err){});
             }
             else {
                 console.error("Wrong Command");
@@ -58,6 +58,8 @@
     function print(result) {
         console.log(result);
     }
+
+    console.log("Welcome to Command Line Dictionary");
 
     module.exports  = dictionary;
 

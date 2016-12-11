@@ -17,6 +17,9 @@
             if(response && Array.isArray(response) && response.length === 0)
                 return Promise.resolve("The word doesn't exist");
             return Promise.resolve(definition());
+        }).catch(function(){
+            console.error("Failed while getting the definition of word, Please check the logs");
+            return Promise.reject();
         });
     };
 
@@ -27,6 +30,9 @@
                 return "Synonyms: " +(response[0] ? response[0].words.join(",") : '');
             }
             return Promise.resolve(synonyms());
+        }).catch(function(){
+            console.error("Failed while getting the synonyms of word, Please check the logs");
+            return Promise.reject();
         });
     };
 
@@ -37,6 +43,9 @@
                 return "Antonyms: " + (response[0] ? response[0].words.join(",") : '');
             }
             return Promise.resolve(antonym());
+        }).catch(function(){
+            console.error("Failed while getting the antonyms of word, Please check the logs");
+            return Promise.reject();
         });
     };
 
@@ -44,6 +53,9 @@
         var promise = api.get("topExample",word);
         return promise.then(function (response) {
             return Promise.resolve("Example: "+(response && response.text ? response.text : ''));
+        }).catch(function(){
+            console.error("Failed while getting the exmples of word, Please check the logs");
+            return Promise.reject();
         });
     };
 
@@ -56,7 +68,10 @@
 
         return Promise.all(arrOfPromises).then(function(result){
             return Promise.resolve(result.join("\n"));
-        })
+        }).catch(function(){
+            console.error("Failed while getting the dictonary of word, Please check the logs");
+            return Promise.reject();
+        });
     };
 
     handler['wordOfTheDay'] = function() {
@@ -67,7 +82,10 @@
       }).then(function(result){
           word = "Word of the day: " + word + "\n";
           return Promise.resolve(word+result);
-      })
+      }).catch(function(){
+          console.error("Failed while getting the word of the day of word, Please check the logs");
+          return Promise.reject();
+      });
     };
 
     handler['play'] = function() {
@@ -84,6 +102,9 @@
         }).then(function(result){
             var hintObject = getHintObject(result, word);
             return Promise.resolve(hintObject);
+        }).catch(function(){
+            console.error("Failed while getting the starting the game, Please check the logs");
+            return Promise.reject();
         });
     };
 

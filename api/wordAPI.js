@@ -10,7 +10,8 @@
        return rp(options).then(function (response){
            return Promise.resolve(response);
         }).catch(function(err){
-            console.log("Error occured while fetching the api");
+            console.error("Error occured while fetching the api - " + err.message);
+            return Promise.reject("Error");
         })
 
     };
