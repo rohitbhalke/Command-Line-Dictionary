@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 (function () {
     var api = require('../api/wordAPI.js');
     var Promise = require("bluebird");
@@ -116,7 +117,7 @@
             let defArr = [];
             result[0].forEach(function(defObject){
                 defArr.push(defObject.text);
-            })
+            });
             return defArr;
         }
 
@@ -135,13 +136,13 @@
                 return Math.floor(Math.random() * max);
             }
             for(var i=0;i<word.length;i++){
-                let index = getRandomNum(word.length,0)
+                let index = getRandomNum(word.length,0);
                 newWord += word[index];
                 word.splice(index, 1);
                 i--;
             }
             return newWord;
-        };
+        }
 
         obj.definition = getDefinition();
         obj.synonyms = getSynonym();

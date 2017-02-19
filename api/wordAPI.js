@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 (function(){
     var api = {};
     var rp = require('request-promise');

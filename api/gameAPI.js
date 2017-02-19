@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 (function () {
     var handler = require('../handler/wordHandler');
     var gameObj = {}, self = gameObj, app;
@@ -27,7 +28,7 @@
         }
         else {
             console.log("Wrong");
-            console.log("Choose any option : \n1: try again \n2: hint \n3: quit ")
+            console.log("Choose any option : \n1: try again \n2: hint \n3: quit ");
         }
     };
 
